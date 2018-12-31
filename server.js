@@ -5,7 +5,13 @@ const mongoose = require("mongoose");
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
+const bodyParser = require("body-parser");
 
+//********************************BODY PARSER */
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+//******************************* */SET UP DB
 const db = require("./config/keys").mongoURI;
 mongoose
   .connect(
@@ -19,8 +25,7 @@ app.get("/", (req, res) => {
   res.send("HELLO");
 });
 
-//Use Routes
-
+//****************************************** */Use Routes
 app.use("/api/users/", users);
 app.use("/api/profile/", profile);
 app.use("/api/posts/", posts);
