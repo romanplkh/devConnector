@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
-import classnames from "classnames";
 import { connect } from "react-redux";
 import { registeruser } from "../../actions/authActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Register extends Component {
   constructor(props) {
@@ -17,6 +17,12 @@ class Register extends Component {
       password2: "",
       errors: {}
     };
+  }
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,70 +63,40 @@ class Register extends Component {
                 Create your DevConnector account
               </p>
               <form noValidate onSubmit={this.onSubmitForm}>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.name
-                    })}
-                    placeholder="Name"
-                    name="name"
-                    value={this.state.name}
-                    onChange={this.onChangeInput}
-                  />
-                  {errors.name && (
-                    <div className="invalid-feedback">{errors.name}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.email
-                    })}
-                    placeholder="Email Address"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChangeInput}
-                  />
-                  <small className="form-text text-muted">
-                    This site uses Gravatar so if you want a profile image, use
-                    a Gravatar email
-                  </small>
-                  {errors.email && (
-                    <div className="invalid-feedback">{errors.email}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.password
-                    })}
-                    placeholder="Password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.onChangeInput}
-                  />
-                  {errors.password && (
-                    <div className="invalid-feedback">{errors.password}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.password2
-                    })}
-                    placeholder="Confirm Password"
-                    name="password2"
-                    value={this.state.password2}
-                    onChange={this.onChangeInput}
-                  />
-                  {errors.password2 && (
-                    <div className="invalid-feedback">{errors.password2}</div>
-                  )}
-                </div>
+                <TextFieldGroup
+                  type="text"
+                  name="name"
+                  value={this.state.name}
+                  onChangeInput={this.onChangeInput}
+                  placeholder="Name"
+                  error={errors.name}
+                />
+                <TextFieldGroup
+                  type="email"
+                  name="email"
+                  value={this.state.email}
+                  onChangeInput={this.onChangeInput}
+                  placeholder="Email Address"
+                  error={errors.email}
+                  info="This site uses Gravatar so if you want a profile image, use
+                  a Gravatar email"
+                />
+                <TextFieldGroup
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChangeInput={this.onChangeInput}
+                  placeholder="Password"
+                  error={errors.password}
+                />
+                <TextFieldGroup
+                  type="password"
+                  name="password2"
+                  value={this.state.password2}
+                  onChangeInput={this.onChangeInput}
+                  placeholder="Confirm Password"
+                  error={errors.password2}
+                />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
