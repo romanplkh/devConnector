@@ -9,7 +9,6 @@ import {
 } from "./types";
 
 //Get current profile
-
 export const getCurrentProfile = () => dispatch => {
   //Set loading before request
   dispatch(setProfileLoading());
@@ -26,6 +25,27 @@ export const getCurrentProfile = () => dispatch => {
       dispatch({
         type: GET_PROFILE,
         payload: {}
+      });
+    });
+};
+
+//Get profile by HANDLE
+export const getProfileByHandle = handle => dispatch => {
+  //Set loading before request
+  dispatch(setProfileLoading());
+
+  axios
+    .get(`/api/profile/handle/${handle}`)
+    .then(res => {
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_PROFILE,
+        payload: null
       });
     });
 };
@@ -71,6 +91,8 @@ export const setProfileLoading = () => {
     type: PROFILE_LOADING
   };
 };
+
+//
 
 //Clear Profile
 export const clearCurrentProfile = () => {
