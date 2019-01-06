@@ -8,3 +8,5 @@ Small MERN stack web application.
 
 For fetching correctrly GitHub repos of users, extension "Ghostery" should be disabled on client side. 
 Redux devTools were removed from sc. If needed, pelease include it in compose() in store.js 
+
+APP is available on https://murmuring-castle-93057.herokuapp.com
