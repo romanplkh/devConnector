@@ -18,24 +18,28 @@ class Navbar extends Component {
     const loged_in_user = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
+          <Link to="/feed" className="nav-link">
+            Post Feed
+          </Link>
+        </li>
+        <li className="nav-item">
           <Link to="/dashboard" className="nav-link">
             My Profile
           </Link>
         </li>
-        <li className="nav-item">
-          <button
-            className="btn btn-link nav-link"
-            onClick={this.onLogOutClick}
-          >
-            <img
-              src={user.avatar}
-              alt={user.name}
-              className="rounded-circle"
-              title="You must have a Gravatar connected to you email to display an image"
-              style={{ width: "25px", marginRight: "5px" }}
-            />
-            {user.name} &nbsp;|&nbsp; Logout
-          </button>
+        <li
+          className="nav-link"
+          style={{ cursor: "pointer" }}
+          onClick={this.onLogOutClick}
+        >
+          <img
+            src={user.avatar}
+            alt={user.name}
+            className="rounded-circle"
+            title="You must have a Gravatar connected to you email to display an image"
+            style={{ width: "25px", marginRight: "5px" }}
+          />
+          Logout
         </li>
       </ul>
     );
