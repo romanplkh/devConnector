@@ -1,5 +1,5 @@
-module.exports = {
-  mongoURI:
-    "mongodb://romanAdmin:password89@ds127783.mlab.com:27783/devconnector",
-  tokenSecret: "rom"
-};
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./keys_prod");
+} else {
+  module.exports = require("./keys_dev");
+}
