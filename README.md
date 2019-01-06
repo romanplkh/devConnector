@@ -2,7 +2,7 @@
 
 
 
-# Social network for developers 
+ *Social network for developers*
 
 
-# Small MERN stack web application.
+Small MERN stack web application.
