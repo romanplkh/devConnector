@@ -6,6 +6,7 @@ import Spinner from "../common/Spinner";
 import { Link } from "react-router-dom";
 import PostItem from "../posts/PostItem";
 import CommentForm from "./CommentForm";
+import CommentFeed from "./CommentFeed";
 
 class Post extends Component {
   componentDidMount() {
@@ -21,6 +22,7 @@ class Post extends Component {
         <div>
           <PostItem post={post} showActions={false} />
           <CommentForm postID={post._id} />
+          <CommentFeed postID={post._id} comments={post.comments} />
         </div>
       );
     }
